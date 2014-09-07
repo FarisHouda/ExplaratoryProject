@@ -46,22 +46,6 @@ png("plot1.png",480,480)
 hist (Data2$Global_active_power,xlab="Global Active Power (kilowatts)", 
       ylab="Frequency",xlim=c(0,6), ylim=c(0,1200),main="Global Active Power", col="red")
 dev.off()
-#------------2nd plt------------
-Data2$Datetime <- do.call(paste0, Data2[,c(1, 2)])
-Data2$Datetime<- ymd_hms(Data2$Datetime)
-Data2 <- Data2[complete.cases(Data2),] 
-png("plot2.png",480,480)
-plot(x=Data2$Datetime,y=Data2$Global_active_power,type="l",ylab="Global Active Power (kilowatts)",xlab="")
-dev.off()
-#----------Third Plot -------------------
 
 
-png("plot3.png",480,480)
-with(Data2, plot(x=Data2$Datetime,y=Data2$Sub_metering_1,type="l",col="black",xlab="",ylab="Energy sub metering",yaxt="n"))
-with(Data2, points(x=Data2$Datetime,y=Data2$Sub_metering_2,col="red",type="l"))
-with(Data2, points(x=Data2$Datetime,y=Data2$Sub_metering_3,col="blue",type="l"))
-axis(2, at=seq(0,30, by=10) , labels=seq(0, 30, by=10),  
-     cex.axis=0.75, las = 0)
-legend("topright",col=c("black","red","blue"),lwd=1,legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
-dev.off()
 }
